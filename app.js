@@ -10,7 +10,6 @@ $(document).ready(function () {
             name: $('#taskName').val(),
             schedule_time: $('#scheduleTime').val(),
         };
-console.log(taskData);
 
         $.ajax({
             url: 'http://localhost:3000/cms/tasks',
@@ -51,7 +50,7 @@ console.log(taskData);
 
 // Fetch all tasks
 function fetchTasks() {
-    $.get('/tasks', function (tasks) {
+    $.get('http://localhost:3000/cms/tasks', function (tasks) {
         let taskTableContent = '';
         tasks.forEach(function (task) {
             taskTableContent += `<tr>
@@ -71,7 +70,7 @@ function fetchTasks() {
 
 // Edit Task
 function editTask(taskId) {
-    $.get('/tasks/' + taskId, function (task) {
+    $.get('http://localhost:3000/cms/tasks/' + taskId, function (task) {
         $('#updateTaskId').val(task.id);
         $('#updateTaskName').val(task.name);
         $('#updateScheduleTime').val(task.schedule_time);
@@ -96,7 +95,7 @@ function deleteTask(taskId) {
 
 // View Task Details
 function viewTask(taskId) {
-    $.get('/tasks/' + taskId, function (task) {
+    $.get('http://localhost:3000/cms/tasks/' + taskId, function (task) {
         alert('Task Details:\n' +
             'Name: ' + task.name + '\n' +
             'Schedule Time: ' + task.schedule_time + '\n' +
